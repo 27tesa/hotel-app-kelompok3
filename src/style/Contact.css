@@ -1,0 +1,519 @@
+/* Base Styles */
+:root {
+  --primary-color: #0d6efd;
+  --light-color: #f8f9fa;
+  --dark-color: #212529;
+  --gray-color: #6c757d;
+  --light-gray: #e9ecef;
+  --border-radius: 8px;
+  --box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  --transition: all 0.3s ease;
+}
+
+/* Contact Page Container */
+.contact-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  background-color: var(--light-color);
+}
+
+/* Header Section */
+.contact-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.contact-header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--dark-color);
+  margin-bottom: 1rem;
+}
+
+.header-divider {
+  width: 80px;
+  height: 4px;
+  background-color: var(--primary-color);
+  margin: 1rem auto;
+  border-radius: 2px;
+}
+
+.contact-header p {
+  font-size: 1.1rem;
+  color: var(--gray-color);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Contact Content Layout */
+.contact-content {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 2rem;
+}
+
+@media (max-width: 992px) {
+  .contact-content {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Contact Information Column */
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Info Card */
+.info-card, .form-card, .map-card {
+  background-color: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+.info-card {
+  padding: 2rem;
+}
+
+.info-card h3, .form-card h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--dark-color);
+  margin-bottom: 1.5rem;
+  position: relative;
+  padding-bottom: 0.75rem;
+}
+
+.info-card h3::after, .form-card h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background-color: var(--primary-color);
+  border-radius: 1.5px;
+}
+
+/* Info Items */
+.info-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+}
+
+.info-icon {
+  width: 40px;
+  height: 40px;
+  background-size: 22px;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-right: 1rem;
+  border-radius: 50%;
+  background-color: rgba(13, 110, 253, 0.1);
+  flex-shrink: 0;
+  position: relative;
+}
+
+.info-icon::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 20px;
+  filter: invert(31%) sepia(83%) saturate(2764%) hue-rotate(209deg) brightness(97%) contrast(101%);
+}
+
+.location-icon::before {
+  background-image: url("https://img.icons8.com/ios-filled/50/000000/marker.png");
+}
+
+.phone-icon::before {
+  background-image: url("https://img.icons8.com/ios-filled/50/000000/phone.png");
+}
+
+.email-icon::before {
+  background-image: url("https://img.icons8.com/ios-filled/50/000000/new-post.png");
+}
+
+.time-icon::before {
+  background-image: url("https://img.icons8.com/ios-filled/50/000000/clock.png");
+}
+
+.info-item h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--dark-color);
+  margin-bottom: 0.5rem;
+}
+
+.info-item p {
+  margin-bottom: 0.25rem;
+  color: var(--gray-color);
+  font-size: 0.95rem;
+}
+
+/* Social Media */
+.social-media {
+  margin-top: 1.5rem;
+}
+
+.social-media h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--dark-color);
+  margin-bottom: 1rem;
+}
+
+.social-icons {
+  display: flex;
+  gap: 1rem;
+}
+
+.social-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: rgba(13, 110, 253, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+  position: relative;
+}
+
+.social-icon::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 18px;
+  filter: invert(31%) sepia(83%) saturate(2764%) hue-rotate(209deg) brightness(97%) contrast(101%);
+}
+
+.social-icon:hover {
+  background-color: var(--primary-color);
+  transform: translateY(-3px);
+}
+
+.social-icon:hover::before {
+  filter: brightness(0) invert(1);
+}
+
+.facebook-icon::before {
+  background-image: url("https://img.icons8.com/ios-filled/50/4267B2/facebook-new.png");
+}
+
+.instagram-icon::before {
+  background-image: url("https://img.icons8.com/ios-filled/50/E1306C/instagram-new.png");
+}
+
+.twitter-icon::before {
+  background-image: url("https://img.icons8.com/ios-filled/50/1DA1F2/twitter.png");
+}
+
+.linkedin-icon::before {
+  background-image: url("https://img.icons8.com/ios-filled/50/0077B5/linkedin.png");
+}
+
+/* Map Card */
+.map-card {
+  padding: 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.map-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: rgba(13, 110, 253, 0.1);
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.map-icon::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("https://img.icons8.com/ios-filled/50/000000/map-marker.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 30px;
+  filter: invert(31%) sepia(83%) saturate(2764%) hue-rotate(209deg) brightness(97%) contrast(101%);
+}
+
+.map-card h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--dark-color);
+  margin-bottom: 0.5rem;
+}
+
+.map-card p {
+  color: var(--gray-color);
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.direction-button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  transition: var(--transition);
+}
+
+.direction-button:hover {
+  background-color: #0b5ed7;
+  transform: translateY(-2px);
+}
+
+.direction-icon {
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+  background-image: url("https://img.icons8.com/ios-filled/50/ffffff/compass.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: brightness(0) invert(1);
+}
+
+/* Contact Form */
+.form-card {
+  padding: 2rem;
+}
+
+.contact-form {
+  width: 100%;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: var(--dark-color);
+}
+
+.required {
+  color: #dc3545;
+  margin-left: 0.25rem;
+}
+
+.input-with-icon {
+  position: relative;
+}
+
+.input-with-icon .input-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.5;
+}
+
+.input-with-icon textarea + .input-icon {
+  top: 1.5rem;
+}
+
+.name-icon {
+  background-image: url("https://img.icons8.com/ios-filled/50/000000/user.png");
+}
+
+.subject-icon {
+  background-image: url("https://img.icons8.com/ios-filled/50/000000/edit.png");
+}
+
+.message-icon {
+  background-image: url("https://img.icons8.com/ios-filled/50/000000/message-squared.png");
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 0.75rem 1rem 0.75rem 2.5rem;
+  font-size: 1rem;
+  border: 1px solid var(--light-gray);
+  border-radius: var(--border-radius);
+  transition: var(--transition);
+}
+
+.contact-form textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.2);
+}
+
+.contact-form input.error,
+.contact-form textarea.error {
+  border-color: #dc3545;
+}
+
+.error-message {
+  color: #dc3545;
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+  display: block;
+}
+
+/* Form Submit */
+.form-submit {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.submit-button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.75rem;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  transition: var(--transition);
+}
+
+.submit-button:hover:not(:disabled) {
+  background-color: #0b5ed7;
+  transform: translateY(-2px);
+}
+
+.submit-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.send-icon {
+  background-image: url("https://img.icons8.com/ios-filled/50/ffffff/paper-plane.png");
+  width: 20px;
+  height: 20px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin-right: 8px;
+  filter: brightness(0) invert(1);
+}
+
+.loading-spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 1s ease-in-out infinite;
+  margin-right: 8px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Success Message */
+.success-message {
+  display: flex;
+  align-items: flex-start;
+  padding: 1rem;
+  background-color: rgba(25, 135, 84, 0.1);
+  border-radius: var(--border-radius);
+  margin-bottom: 1.5rem;
+}
+
+.success-icon {
+  width: 30px;
+  height: 30px;
+  background-color: #198754;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  margin-right: 1rem;
+  flex-shrink: 0;
+}
+
+.success-message h4 {
+  margin-bottom: 0.25rem;
+  color: #155724;
+  font-weight: 600;
+}
+
+.success-message p {
+  color: #155724;
+  margin-bottom: 0;
+  font-size: 0.95rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .contact-header h1 {
+    font-size: 2rem;
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .contact-content {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 576px) {
+  .contact-container {
+    padding: 2rem 1rem;
+  }
+  
+  .info-card, .form-card, .map-card {
+    padding: 1.5rem;
+  }
+}
