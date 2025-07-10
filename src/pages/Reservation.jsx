@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import "../style/Reservation.css";
 
 function Reservation() {
   const [formData, setFormData] = useState({
@@ -87,22 +86,18 @@ function Reservation() {
   };
 
   return (
-    <div className="reservation-container">
+    <div className="bg-light min-vh-100">
       <div className="container py-5">
         <div className="text-center mb-5">
-          <h1 className="display-4 fw-bold reservation-title">
-            Reservasi Hotel
-          </h1>
-          <p className="lead text-muted">
-            Pesan kamar impian Anda dengan mudah dan cepat
-          </p>
+          <h1 className="display-4 fw-bold">Reservasi Hotel</h1>
+          <p className="lead text-muted">Pesan kamar impian Anda dengan mudah dan cepat</p>
         </div>
 
         <div className="row">
           {/* Form Section */}
           <div className="col-lg-8 mb-4">
-            <div className="card reservation-card">
-              <div className="card-header reservation-card-header">
+            <div className="card shadow-sm">
+              <div className="card-header bg-primary text-white">
                 <h3 className="mb-0">Informasi Pemesanan</h3>
               </div>
               <div className="card-body">
@@ -158,8 +153,7 @@ function Reservation() {
                     <div className="col-md-6">
                       <div className="mb-3">
                         <label className="form-label">
-                          <i className="bi bi-calendar-event me-2"></i>Tanggal
-                          Check-in
+                          <i className="bi bi-calendar-event me-2"></i>Tanggal Check-in
                         </label>
                         <input
                           type="date"
@@ -172,8 +166,7 @@ function Reservation() {
 
                       <div className="mb-3">
                         <label className="form-label">
-                          <i className="bi bi-calendar-check me-2"></i>Tanggal
-                          Check-out
+                          <i className="bi bi-calendar-check me-2"></i>Tanggal Check-out
                         </label>
                         <input
                           type="date"
@@ -194,46 +187,31 @@ function Reservation() {
                           onChange={handleChange}
                           defaultValue="Deluxe Room"
                         >
-                          <option value="Deluxe Room">
-                            Deluxe Room - Rp 850.000/malam
-                          </option>
-                          <option value="Superior Room">
-                            Superior Room - Rp 650.000/malam
-                          </option>
-                          <option value="Suite Room">
-                            Suite Room - Rp 1.200.000/malam
-                          </option>
+                          <option value="Deluxe Room">Deluxe Room - Rp 850.000/malam</option>
+                          <option value="Superior Room">Superior Room - Rp 650.000/malam</option>
+                          <option value="Suite Room">Suite Room - Rp 1.200.000/malam</option>
                         </select>
                       </div>
                     </div>
                   </div>
 
                   {/* Room Description */}
-                  <div className="alert alert-info room-info mt-3">
+                  <div className="alert alert-info mt-3">
                     <h5 className="mb-1">{formData.roomType}</h5>
-                    <p className="mb-0">
-                      {roomDescriptions[formData.roomType]}
-                    </p>
+                    <p className="mb-0">{roomDescriptions[formData.roomType]}</p>
                   </div>
 
                   {/* Error Message */}
                   {errorMessage && (
-                    <div
-                      className="alert alert-danger d-flex align-items-center mt-3"
-                      role="alert"
-                    >
+                    <div className="alert alert-danger d-flex align-items-center mt-3" role="alert">
                       <i className="bi bi-exclamation-triangle-fill me-2"></i>
                       <div>{errorMessage}</div>
                     </div>
                   )}
 
                   <div className="d-grid mt-4">
-                    <button
-                      type="submit"
-                      className="btn btn-primary btn-lg reservation-btn"
-                    >
-                      <i className="bi bi-check2-circle me-2"></i>Lanjutkan
-                      Pemesanan
+                    <button type="submit" className="btn btn-primary btn-lg fw-bold">
+                      <i className="bi bi-check2-circle me-2"></i>Lanjutkan Pemesanan
                     </button>
                   </div>
                 </form>
@@ -243,60 +221,45 @@ function Reservation() {
 
           {/* Summary Section */}
           <div className="col-lg-4">
-            <div
-              className="card reservation-summary-card sticky-top"
-              style={{ top: "2rem" }}
-            >
-              <div className="card-header reservation-card-header">
+            <div className="card shadow-sm sticky-top" style={{ top: "2rem" }}>
+              <div className="card-header bg-primary text-white">
                 <h3 className="mb-0">Ringkasan Pesanan</h3>
               </div>
               <div className="card-body">
-                <div className="summary-details">
+                <div className="mb-3">
                   <div className="d-flex justify-content-between mb-2">
-                    <span>Tipe Kamar:</span>
+                    <span className="fw-bold">Tipe Kamar</span>
                     <span className="fw-bold">{formData.roomType}</span>
                   </div>
                   <div className="d-flex justify-content-between mb-2">
-                    <span>Harga per malam:</span>
-                    <span className="fw-bold">
-                      {formatToRupiah(roomPrices[formData.roomType])}
-                    </span>
+                    <span className="fw-bold">Check-in</span>
+                    <span>{formData.checkin || '-'}</span>
+                  </div>
+                  <div className="d-flex justify-content-between mb-2">
+                    <span className="fw-bold">Check-out</span>
+                    <span>{formData.checkout || '-'}</span>
+                  </div>
+                  <div className="d-flex justify-content-between mb-2">
+                    <span className="fw-bold">Jumlah Tamu</span>
+                    <span>{formData.guests}</span>
                   </div>
                   <div className="d-flex justify-content-between mb-3">
-                    <span>Jumlah malam:</span>
-                    <span className="fw-bold">{totalNights || 0}</span>
+                    <span className="fw-bold">Jumlah Malam</span>
+                    <span>{totalNights || 0}</span>
                   </div>
-
-                  <hr />
-
-                  <div className="d-flex justify-content-between total-price">
-                    <span>Total:</span>
-                    <span className="fw-bold fs-5">
-                      {formatToRupiah(totalPrice)}
-                    </span>
+                  <div className="d-flex justify-content-between align-items-center border-top pt-3">
+                    <span className="fw-bold fs-5">Total Harga</span>
+                    <span className="fw-bold text-primary fs-5">{formatToRupiah(totalPrice)}</span>
                   </div>
                 </div>
-
-                {/* Benefits */}
-                <div className="card mt-4 benefits-card">
+                <div className="card mt-4">
                   <div className="card-body">
                     <h5 className="card-title">Yang Anda Dapatkan:</h5>
-                    <ul className="list-group list-group-flush benefits-list">
-                      <li className="list-group-item">
-                        <i className="bi bi-wifi me-2"></i>Free Wi-Fi kecepatan
-                        tinggi
-                      </li>
-                      <li className="list-group-item">
-                        <i className="bi bi-cup-hot me-2"></i>Sarapan gratis
-                      </li>
-                      <li className="list-group-item">
-                        <i className="bi bi-water me-2"></i>Akses kolam renang
-                        dan gym
-                      </li>
-                      <li className="list-group-item">
-                        <i className="bi bi-shield-check me-2"></i>Pembatalan
-                        gratis 24 jam
-                      </li>
+                    <ul className="list-group list-group-flush">
+                      <li className="list-group-item"><i className="bi bi-wifi me-2"></i>Free Wi-Fi kecepatan tinggi</li>
+                      <li className="list-group-item"><i className="bi bi-cup-hot me-2"></i>Sarapan gratis</li>
+                      <li className="list-group-item"><i className="bi bi-water me-2"></i>Akses kolam renang</li>
+                      <li className="list-group-item"><i className="bi bi-shield-check me-2"></i>Pembatalan gratis</li>
                     </ul>
                   </div>
                 </div>

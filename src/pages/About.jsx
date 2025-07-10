@@ -1,4 +1,3 @@
-import "../style/About.css";
 import { useState, useEffect } from "react";
 
 function About() {
@@ -9,98 +8,73 @@ function About() {
   }, []);
 
   return (
-    <div className="about-page">
-      {/* Hero Section dengan Parallax Effect */}
-      <section className="about-hero">
-        <div className={`hero-content ${isVisible ? "fade-in" : ""}`}>
-          <h1>Tentang Kami</h1>
-          <p>Pengalaman Menginap yang Tak Terlupakan</p>
-          <div className="hero-line"></div>
+    <div className="bg-light">
+      {/* Hero Section */}
+      <section className="bg-primary text-white text-center py-5 mb-5">
+        <div className="container">
+          <h1 className="display-4 fw-bold mb-2">Tentang Kami</h1>
+          <p className="lead mb-3">Pengalaman Menginap yang Tak Terlupakan</p>
+          <div className="mx-auto mb-2" style={{width:'60px',height:'4px',background:'#fff',borderRadius:'2px'}}></div>
         </div>
       </section>
 
       {/* Sejarah dan Visi Hotel */}
-      <section className="container section-spacing">
-        <div className="row">
-          <div className="col-md-6">
-            <div className={`content-box ${isVisible ? "slide-in-left" : ""}`}>
-              <span className="section-subtitle">SELAMAT DATANG DI</span>
-              <h2 className="section-title">Hotel Cendana</h2>
-              <p className="section-desc">
-                Didirikan pada tahun 2010, Hotel Cendana telah menjadi simbol
-                keanggunan dan keramahtamahan di jantung kota. Kami bangga
-                dengan pelayanan premium dan pengalaman menginap yang tak
-                tertandingi.
-              </p>
-              <p className="section-desc">
-                Lokasi strategis kami memungkinkan para tamu untuk dengan mudah
-                mengakses pusat bisnis, tempat wisata populer, dan transportasi
-                umum, menjadikan Hotel Cendana pilihan ideal untuk wisatawan
-                bisnis maupun liburan.
-              </p>
-            </div>
+      <section className="container py-5">
+        <div className="row align-items-center">
+          <div className="col-md-6 mb-4 mb-md-0">
+            <span className="text-primary fw-bold">SELAMAT DATANG DI</span>
+            <h2 className="fw-bold">Hotel Cendana</h2>
+            <p className="text-muted">
+              Didirikan pada tahun 2010, Hotel Cendana telah menjadi simbol keanggunan dan keramahtamahan di jantung kota. Kami bangga dengan pelayanan premium dan pengalaman menginap yang tak tertandingi.
+            </p>
+            <p className="text-muted">
+              Lokasi strategis kami memungkinkan para tamu untuk dengan mudah mengakses pusat bisnis, tempat wisata populer, dan transportasi umum, menjadikan Hotel Cendana pilihan ideal untuk wisatawan bisnis maupun liburan.
+            </p>
           </div>
           <div className="col-md-6">
-            <div
-              className={`image-container ${isVisible ? "fade-in-delay" : ""}`}
-            >
-              <img
-                src="/hero-bg.jpg"
-                alt="Tampak Depan Hotel"
-                className="img-fluid rounded-image shadow-effect"
-              />
-              <div className="image-accent"></div>
-            </div>
+            <img
+              src="/hero-bg.jpg"
+              alt="Tampak Depan Hotel"
+              className="img-fluid rounded shadow"
+            />
           </div>
         </div>
       </section>
 
       {/* Nilai dan Prinsip */}
-      <section className="values-section">
-        <div className="container section-spacing">
+      <section className="bg-white py-5">
+        <div className="container">
           <div className="text-center mb-5">
-            <span className="section-subtitle">NILAI KAMI</span>
-            <h2 className="section-title">Komitmen Untuk Keunggulan</h2>
-            <div className="title-underline"></div>
+            <span className="text-primary fw-bold">NILAI KAMI</span>
+            <h2 className="fw-bold">Komitmen Untuk Keunggulan</h2>
+            <div className="mx-auto mb-2" style={{width:'60px',height:'4px',background:'#0d6efd',borderRadius:'2px'}}></div>
           </div>
-
           <div className="row g-4">
             <div className="col-md-4">
-              <div className="value-card">
-                <div className="value-icon">
-                  <i className="fas fa-award"></i>
+              <div className="card h-100 text-center border-0 shadow-sm">
+                <div className="card-body">
+                  <i className="fas fa-award fa-2x text-primary mb-3"></i>
+                  <h3 className="h5 fw-bold">Pelayanan Prima</h3>
+                  <p className="text-muted small">Kami berkomitmen untuk memberikan pelayanan terbaik dengan standar tertinggi kepada setiap tamu yang datang.</p>
                 </div>
-                <h3>Pelayanan Prima</h3>
-                <p>
-                  Kami berkomitmen untuk memberikan pelayanan terbaik dengan
-                  standar tertinggi kepada setiap tamu yang datang.
-                </p>
               </div>
             </div>
-
             <div className="col-md-4">
-              <div className="value-card">
-                <div className="value-icon">
-                  <i className="fas fa-hands-helping"></i>
+              <div className="card h-100 text-center border-0 shadow-sm">
+                <div className="card-body">
+                  <i className="fas fa-hands-helping fa-2x text-primary mb-3"></i>
+                  <h3 className="h5 fw-bold">Keramahtamahan</h3>
+                  <p className="text-muted small">Menyambut setiap tamu dengan kehangatan dan ketulusan, menciptakan atmosfer yang nyaman seperti di rumah sendiri.</p>
                 </div>
-                <h3>Keramahtamahan</h3>
-                <p>
-                  Menyambut setiap tamu dengan kehangatan dan ketulusan,
-                  menciptakan atmosfer yang nyaman seperti di rumah sendiri.
-                </p>
               </div>
             </div>
-
             <div className="col-md-4">
-              <div className="value-card">
-                <div className="value-icon">
-                  <i className="fas fa-seedling"></i>
+              <div className="card h-100 text-center border-0 shadow-sm">
+                <div className="card-body">
+                  <i className="fas fa-seedling fa-2x text-primary mb-3"></i>
+                  <h3 className="h5 fw-bold">Keberlanjutan</h3>
+                  <p className="text-muted small">Melakukan praktik ramah lingkungan dalam setiap aspek operasional untuk masa depan yang lebih baik.</p>
                 </div>
-                <h3>Keberlanjutan</h3>
-                <p>
-                  Melakukan praktik ramah lingkungan dalam setiap aspek
-                  operasional untuk masa depan yang lebih baik.
-                </p>
               </div>
             </div>
           </div>
@@ -108,39 +82,23 @@ function About() {
       </section>
 
       {/* Visi dan Misi */}
-      <section className="vision-mission-section">
-        <div className="container section-spacing">
-          <div className="row">
+      <section className="py-5">
+        <div className="container">
+          <div className="row g-4">
             <div className="col-md-6">
-              <div className="vision-box">
-                <h2>Visi</h2>
-                <p>
-                  Menjadi destinasi penginapan terkemuka yang dikenal dengan
-                  keunggulan layanan, fasilitas modern, dan pengalaman menginap
-                  yang berkesan bagi setiap tamu.
-                </p>
+              <div className="bg-white rounded shadow p-4 h-100">
+                <h2 className="fw-bold mb-2">Visi</h2>
+                <p className="text-muted mb-0">Menjadi destinasi penginapan terkemuka yang dikenal dengan keunggulan layanan, fasilitas modern, dan pengalaman menginap yang berkesan bagi setiap tamu.</p>
               </div>
             </div>
             <div className="col-md-6">
-              <div className="mission-box">
-                <h2>Misi</h2>
-                <ul>
-                  <li>
-                    Menyediakan layanan berkualitas tinggi dengan keramahan yang
-                    tulus
-                  </li>
-                  <li>
-                    Menciptakan lingkungan yang nyaman dan mewah bagi setiap
-                    tamu
-                  </li>
-                  <li>
-                    Berinvestasi dalam pengembangan staff untuk pelayanan
-                    terbaik
-                  </li>
-                  <li>
-                    Menerapkan praktik bisnis yang berkelanjutan dan bertanggung
-                    jawab
-                  </li>
+              <div className="bg-white rounded shadow p-4 h-100">
+                <h2 className="fw-bold mb-2">Misi</h2>
+                <ul className="mb-0 ps-3">
+                  <li className="mb-1">Menyediakan layanan berkualitas tinggi dengan keramahan yang tulus</li>
+                  <li className="mb-1">Menciptakan lingkungan yang nyaman dan mewah bagi setiap tamu</li>
+                  <li className="mb-1">Berinvestasi dalam pengembangan staff untuk pelayanan terbaik</li>
+                  <li className="mb-1">Menerapkan praktik bisnis yang berkelanjutan dan bertanggung jawab</li>
                 </ul>
               </div>
             </div>
@@ -149,90 +107,66 @@ function About() {
       </section>
 
       {/* Tim Kami */}
-      <section className="team-section">
-        <div className="container section-spacing">
+      <section className="bg-white py-5">
+        <div className="container">
           <div className="text-center mb-5">
-            <span className="section-subtitle">BERTEMU DENGAN</span>
-            <h2 className="section-title">Tim Manajemen Kami</h2>
-            <div className="title-underline"></div>
+            <span className="text-primary fw-bold">BERTEMU DENGAN</span>
+            <h2 className="fw-bold">Tim Manajemen Kami</h2>
+            <div className="mx-auto mb-2" style={{width:'60px',height:'4px',background:'#0d6efd',borderRadius:'2px'}}></div>
           </div>
-
-          <div className="row g-4">
-            <div className="col-md-4">
-              <div className="team-member">
-                <div className="member-image">
-                  <img
-                    src="/manager1.jpeg"
-                    alt="General Manager"
-                    className="img-fluid"
-                  />
-                </div>
-                <div className="member-info">
-                  <h3>Wawan Gunadi</h3>
-                  <p className="position">General Manager</p>
-                  <p className="member-desc">
-                    Memiliki pengalaman lebih dari 15 tahun dalam industri
-                    perhotelan.
-                  </p>
+          <div className="row g-4 justify-content-center">
+            <div className="col-md-4 d-flex">
+              <div className="card h-100 w-100 text-center border-0 shadow-sm">
+                <img src="/manager1.jpeg" alt="General Manager" className={`card-img-top rounded-top ${isVisible ? "fade-in-img" : "opacity-0"}`} style={{height:320, objectFit:'cover', transition:'opacity 0.7s'}} />
+                <div className="card-body d-flex flex-column justify-content-end">
+                  <h3 className="h5 fw-bold mb-1">Wawan Gunadi</h3>
+                  <p className="text-primary mb-1">General Manager</p>
+                  <p className="text-muted small mb-0">Memiliki pengalaman lebih dari 15 tahun dalam industri perhotelan.</p>
                 </div>
               </div>
             </div>
-
-            <div className="col-md-4">
-              <div className="team-member">
-                <div className="member-image">
-                  <img
-                    src="/manager2.jpeg"
-                    alt="Operations Manager"
-                    className="img-fluid"
-                  />
-                </div>
-                <div className="member-info">
-                  <h3>Geta Octadela</h3>
-                  <p className="position">Operations Manager</p>
-                  <p className="member-desc">
-                    Ahli dalam manajemen operasional dan kepuasan pelanggan.
-                  </p>
+            <div className="col-md-4 d-flex">
+              <div className="card h-100 w-100 text-center border-0 shadow-sm">
+                <img src="/manager2.jpeg" alt="Operations Manager" className={`card-img-top rounded-top ${isVisible ? "fade-in-img" : "opacity-0"}`} style={{height:320, objectFit:'cover', transition:'opacity 0.7s'}} />
+                <div className="card-body d-flex flex-column justify-content-end">
+                  <h3 className="h5 fw-bold mb-1">Geta Octadela</h3>
+                  <p className="text-primary mb-1">Operations Manager</p>
+                  <p className="text-muted small mb-0">Ahli dalam manajemen operasional dan kepuasan pelanggan.</p>
                 </div>
               </div>
             </div>
-
-            <div className="col-md-4">
-              <div className="team-member">
-                <div className="member-image">
-                  <img
-                    src="/manager3.jpeg"
-                    alt="Chef Executive"
-                    className="img-fluid"
-                  />
-                </div>
-                <div className="member-info">
-                  <h3>Tesa Erlita</h3>
-                  <p className="position">Chef Executive</p>
-                  <p className="member-desc">
-                    Berpengalaman internasional dengan keahlian kuliner yang
-                    luar biasa.
-                  </p>
+            <div className="col-md-4 d-flex">
+              <div className="card h-100 w-100 text-center border-0 shadow-sm">
+                <img src="/manager3.jpeg" alt="Chef Executive" className={`card-img-top rounded-top ${isVisible ? "fade-in-img" : "opacity-0"}`} style={{height:320, objectFit:'cover', transition:'opacity 0.7s'}} />
+                <div className="card-body d-flex flex-column justify-content-end">
+                  <h3 className="h5 fw-bold mb-1">Tesa Erlita</h3>
+                  <p className="text-primary mb-1">Chef Executive</p>
+                  <p className="text-muted small mb-0">Berpengalaman internasional dengan keahlian kuliner yang luar biasa.</p>
                 </div>
               </div>
             </div>
           </div>
+          <style>{`
+            .fade-in-img {
+              opacity: 1 !important;
+              animation: fadeInImg 0.8s cubic-bezier(.77,0,.18,1) 0.1s both;
+            }
+            @keyframes fadeInImg {
+              from { opacity: 0; transform: scale(0.97); }
+              to { opacity: 1; transform: scale(1); }
+            }
+          `}</style>
         </div>
       </section>
 
       {/* Call to Action */}
-      <section className="cta-section">
+      <section className="py-5 bg-primary text-white text-center">
         <div className="container">
-          <div className="cta-content text-center">
-            <h2>Jadikan Hotel Impian Sebagai Pilihan Anda</h2>
-            <p>
-              Rasakan pengalaman menginap yang tak terlupakan dalam balutan
-              kemewahan dan kenyamanan.
-            </p>
-            <a href="/reservation" className="btn-book">
-                    Pesan Sekarang
-            </a>
-          </div>
+          <h2 className="fw-bold mb-3">Jadikan Hotel Impian Sebagai Pilihan Anda</h2>
+          <p className="lead mb-4">Rasakan pengalaman menginap yang tak terlupakan dalam balutan kemewahan dan kenyamanan.</p>
+          <a href="/reservation" className="btn btn-light btn-lg fw-bold px-4">
+            Pesan Sekarang
+          </a>
         </div>
       </section>
     </div>

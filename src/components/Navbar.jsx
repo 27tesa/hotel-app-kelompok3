@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import "./Navbar.css";
+// Hapus import './Navbar.css';
 
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -23,32 +23,26 @@ function Navbar() {
   }, []);
 
   return (
-    <nav className={`navbar navbar-expand-lg ${scrolled ? "scrolled" : ""}`}>
+    <nav className={`navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top${scrolled ? " border-bottom" : ""}`}> 
       <div className="container">
-        <NavLink className="navbar-brand" to="/">
-          <div className="logo-container">
-            <img
-              src="/logo.png"
-              alt="Hotel Cendana Logo"
-              className="logo"
-            />
-            <span className="brand-text">Hotel Cendana</span>
-          </div>
+        <NavLink className="navbar-brand d-flex align-items-center gap-2" to="/">
+          <img
+            src="/logo.png"
+            alt="Hotel Cendana Logo"
+            style={{height:32, width:32, objectFit:'contain'}}
+          />
+          <span className="fw-bold">Hotel Cendana</span>
         </NavLink>
-        
         <button
-          className={`navbar-toggler ${isOpen ? "open" : ""}`}
+          className="navbar-toggler"
           type="button"
-          onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle navigation"
+          onClick={() => setIsOpen(!isOpen)}
         >
-          <span className="toggler-icon top-bar"></span>
-          <span className="toggler-icon middle-bar"></span>
-          <span className="toggler-icon bottom-bar"></span>
+          <span className="navbar-toggler-icon"></span>
         </button>
-        
-        <div className={`collapse navbar-collapse ${isOpen ? "show" : ""}`}>
-          <ul className="navbar-nav">
+        <div className={`collapse navbar-collapse${isOpen ? " show" : ""}`}> 
+          <ul className="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center gap-lg-2">
             <li className="nav-item">
               <NavLink 
                 to="/" 
@@ -86,10 +80,10 @@ function Navbar() {
                 Kontak
               </NavLink>
             </li>
-            <li className="nav-item book-now">
+            <li className="nav-item ms-lg-2">
               <NavLink 
                 to="/reservation" 
-                className="btn-reservation"
+                className="btn btn-primary px-3 fw-bold"
                 onClick={() => setIsOpen(false)}
               >
                 Pesan Sekarang

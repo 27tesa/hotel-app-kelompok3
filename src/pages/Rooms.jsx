@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "../style/Rooms.css";
+// Hapus import custom CSS
 
 const rooms = [
   {
@@ -57,63 +57,65 @@ function Rooms() {
   };
 
   return (
-    <div className="rooms-page">
-      <div className="rooms-header">
-        <h1>Kamar & Harga</h1>
-        <p className="rooms-subtitle">
-          Pilihan akomodasi terbaik untuk kenyamanan Anda
-        </p>
+    <div className="bg-light pb-4">
+      <div className="bg-primary text-white text-center py-5 mb-4">
+        <h1 className="display-4 fw-bold">Kamar & Harga</h1>
+        <p className="lead">Pilihan akomodasi terbaik untuk kenyamanan Anda</p>
       </div>
 
       <div className="container">
-        <div className="rooms-container">
+        <div className="row g-4 justify-content-center">
           {rooms.map((room, index) => (
             <div
               key={index}
-              className={`room-card ${
-                selectedRoom === index ? "expanded" : ""
-              }`}
+              className={`col-12 col-md-10 col-lg-8`}
             >
-              <div className="room-image-container">
-                <div className="room-badge">Available</div>
-                <img src={room.image} alt={room.name} className="room-image" />
-              </div>
-              <div className="room-info">
-                <div className="room-header">
-                  <h2 className="room-name">{room.name}</h2>
-                  <div className="room-price">
-                    <span className="price">{room.price}</span>
-                    <span className="per-night">{room.perNight}</span>
+              <div className={`card shadow-sm ${selectedRoom === index ? "border-primary" : ""}`}>
+                <div className="row g-0 align-items-stretch">
+                  <div className="col-md-5 position-relative">
+                    <span className="badge bg-success position-absolute top-0 start-0 m-3">Available</span>
+                    <img src={room.image} alt={room.name} className="img-fluid rounded-start w-100 h-100 object-fit-cover" style={{minHeight:200, maxHeight:250}} />
                   </div>
-                </div>
-                <p className="room-description">{room.description}</p>
+                  <div className="col-md-7">
+                    <div className="card-body d-flex flex-column h-100">
+                      <div className="d-flex justify-content-between align-items-start mb-2">
+                        <h2 className="h5 fw-bold mb-0">{room.name}</h2>
+                        <div className="text-end">
+                          <span className="text-primary fw-bold fs-5">{room.price}</span>
+                          <span className="text-muted ms-1">{room.perNight}</span>
+                        </div>
+                      </div>
+                      <p className="mb-2">{room.description}</p>
 
-                {selectedRoom === index && (
-                  <div className="room-features">
-                    <h3>Fasilitas Kamar</h3>
-                    <ul>
-                      {room.features.map((feature, i) => (
-                        <li key={i}>
-                          <i className="feature-icon"></i>
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
+                      {selectedRoom === index && (
+                        <div className="mb-2">
+                          <h6 className="fw-bold">Fasilitas Kamar</h6>
+                          <ul className="list-group list-group-flush mb-2">
+                            {room.features.map((feature, i) => (
+                              <li key={i} className="list-group-item px-0 py-1 border-0">
+                                <i className="bi bi-check-circle text-success me-2"></i>
+                                {feature}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+
+                      <div className="mt-auto d-flex gap-2">
+                        <button
+                          className="btn btn-outline-primary btn-sm"
+                          onClick={() => handleViewDetails(index)}
+                        >
+                          {selectedRoom === index
+                            ? "Sembunyikan Detail"
+                            : "Lihat Detail"}
+                        </button>
+                        <a href="/reservation" className="btn btn-primary btn-sm">
+                          Pesan Sekarang
+                        </a>
+                      </div>
+                    </div>
                   </div>
-                )}
-
-                <div className="room-actions">
-                  <button
-                    className="btn-details"
-                    onClick={() => handleViewDetails(index)}
-                  >
-                    {selectedRoom === index
-                      ? "Sembunyikan Detail"
-                      : "Lihat Detail"}
-                  </button>
-                  <a href="/reservation" className="btn-book">
-                    Pesan Sekarang
-                  </a>
                 </div>
               </div>
             </div>
