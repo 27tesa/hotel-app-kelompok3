@@ -1,41 +1,115 @@
-# Backend Hotel App (PHP + MySQL)
+# Backend Hotel App - Setup Guide
 
-## Struktur Folder
-- db.php (koneksi database)
-- kamar/ (CRUD kamar)
-  - create.php
-  - read.php
-  - get.php
-  - update.php
-  - delete.php
+## Persyaratan
+- XAMPP (Apache + MySQL + PHP)
+- phpMyAdmin
 
-## Setup
-1. Import SQL berikut di phpMyAdmin:
+## Setup Database
 
-```sql
-CREATE DATABASE hotel_app;
-USE hotel_app;
-CREATE TABLE kamar (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  nama VARCHAR(100) NOT NULL,
-  tipe VARCHAR(50) NOT NULL,
-  harga DECIMAL(12,2) NOT NULL,
-  deskripsi TEXT,
-  gambar VARCHAR(255)
-);
+1. **Buka XAMPP Control Panel**
+   - Start Apache dan MySQL
+
+2. **Buka phpMyAdmin**
+   - Buka browser, ketik: `http://localhost/phpmyadmin`
+
+3. **Import Database**
+   - Klik tab "Import"
+   - Pilih file `database.sql`
+   - Klik "Go" untuk menjalankan script
+
+4. **Verifikasi Database**
+   - Database `hotel_db` akan dibuat
+   - Tabel `reservasi` akan dibuat dengan struktur yang sesuai
+
+## Setup Backend Files
+
+1. **Copy folder backend ke htdocs**
+   - Copy seluruh folder `backend/` ke `C:\xampp\htdocs\`
+   - Struktur: `C:\xampp\htdocs\backend\`
+
+2. **Test API Endpoint**
+   - URL: `http://localhost/backend/reservasi/create.php`
+   - Method: POST
+   - Content-Type: application/json
+
+## Testing dengan Postman
+
+### Test Create Reservation
+- **URL**: `http://localhost/backend/reservasi/create.php`
+- **Method**: POST
+- **Headers**: 
+  - Content-Type: application/json
+- **Body** (raw JSON):
+```json
+{
+  "nama": "John Doe",
+  "email": "john@example.com",
+  "tanggal_checkin": "2024-01-15",
+  "tanggal_checkout": "2024-01-17",
+  "jumlah_tamu": 2,
+  "tipe_kamar": "Deluxe Room",
+  "jumlah_malam": 2,
+  "total_harga": 1700000,
+  "status": "pending"
+}
 ```
 
-2. Letakkan folder `backend` di `htdocs` (XAMPP) atau `www` (Laragon).
-3. Edit `db.php` jika password MySQL Anda berbeda.
+### Expected Response (Success)
+```json
+{
+  "success": true,
+  "message": "Reservasi berhasil dibuat",
+  "data": {
+    "id": 1,
+    "nama": "John Doe",
+    "email": "john@example.com",
+    "tanggal_checkin": "2024-01-15",
+    "tanggal_checkout": "2024-01-17",
+    "jumlah_tamu": 2,
+    "tipe_kamar": "Deluxe Room",
+    "jumlah_malam": 2,
+    "total_harga": "1700000.00",
+    "status": "pending"
+  }
+}
+```
 
-## Testing API
-- GET semua kamar: `GET /backend/kamar/read.php`
-- GET kamar by id: `GET /backend/kamar/get.php?id=1`
-- Tambah kamar: `POST /backend/kamar/create.php` (body JSON)
-- Update kamar: `PUT /backend/kamar/update.php` (body JSON)
-- Hapus kamar: `DELETE /backend/kamar/delete.php?id=1`
+## Troubleshooting
 
-Gunakan Postman untuk testing.
+### Error: "Database connection failed"
+- Pastikan MySQL sudah running di XAMPP
+- Cek konfigurasi di `db.php`
 
-## Tambahan
-- Setiap anggota tim buat folder & file CRUD sendiri sesuai tabel masing-masing (copy dari folder kamar). 
+### Error: "Table doesn't exist"
+- Pastikan sudah import `database.sql` ke phpMyAdmin
+- Cek nama database di `db.php` sesuai dengan yang dibuat
+
+### Error: "Access-Control-Allow-Origin"
+- CORS sudah dikonfigurasi di `create.php`
+- Pastikan frontend dan backend berjalan di port yang benar
+
+### Error: "Method not allowed"
+- Pastikan menggunakan method POST
+- Cek URL endpoint yang benar
+
+## Struktur File
+```
+backend/
+├── db.php                 # Koneksi database
+├── database.sql           # Script pembuatan database
+├── admin.html             # Halaman admin untuk melihat data reservasi
+├── README.md             # File ini
+└── reservasi/
+    ├── create.php        # API untuk membuat reservasi
+    └── read.php          # API untuk membaca semua reservasi
+```
+
+## Halaman Admin
+
+Setelah setup selesai, Anda bisa mengakses halaman admin untuk melihat data reservasi:
+
+- **URL**: `http://localhost/backend/admin.html`
+- **Fitur**: 
+  - Melihat semua data reservasi dalam tabel
+  - Refresh data secara real-time
+  - Format data yang rapi dengan status berwarna 

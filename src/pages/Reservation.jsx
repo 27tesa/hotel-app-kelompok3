@@ -13,6 +13,8 @@ function Reservation() {
   const [totalNights, setTotalNights] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
   const [errorMessage, setErrorMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null); // 'success', 'error', null
 
   const roomPrices = {
     "Deluxe Room": 850000,
@@ -58,7 +60,7 @@ function Reservation() {
     }
   }, [formData.checkin, formData.checkout, formData.roomType]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (errorMessage) {
@@ -66,15 +68,57 @@ function Reservation() {
       return;
     }
 
-    alert(
-      `Reservasi berhasil!\n\nNama: ${formData.name}\nEmail: ${
-        formData.email
-      }\nCheck-in: ${formData.checkin}\nCheck-out: ${
-        formData.checkout
-      }\nJumlah Malam: ${totalNights}\nTotal Harga: Rp ${totalPrice.toLocaleString(
-        "id-ID"
-      )}`
-    );
+    setIsLoading(true);
+    setSubmitStatus(null);
+
+    try {
+      // Data yang akan dikirim ke backend
+      const reservationData = {
+        nama: formData.name,
+        email: formData.email,
+        tanggal_checkin: formData.checkin,
+        tanggal_checkout: formData.checkout,
+        jumlah_tamu: formData.guests,
+        tipe_kamar: formData.roomType,
+        jumlah_malam: totalNights,
+        total_harga: totalPrice,
+        status: "pending" // default status
+      };
+
+      // Kirim data ke backend PHP
+      const response = await fetch('http://localhost/backend/reservasi/create.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(reservationData)
+      });
+
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        setSubmitStatus('success');
+        // Reset form setelah berhasil
+        setFormData({
+          name: "",
+          email: "",
+          checkin: "",
+          checkout: "",
+          guests: 1,
+          roomType: "Deluxe Room",
+        });
+        setTotalNights(0);
+        setTotalPrice(0);
+      } else {
+        setSubmitStatus('error');
+        console.error('Error:', result.message || 'Terjadi kesalahan saat menyimpan reservasi');
+      }
+    } catch (error) {
+      setSubmitStatus('error');
+      console.error('Network error:', error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const formatToRupiah = (number) => {
@@ -209,9 +253,44 @@ function Reservation() {
                     </div>
                   )}
 
+                  {/* Success Message */}
+                  {submitStatus === 'success' && (
+                    <div className="alert alert-success d-flex align-items-center mt-3" role="alert">
+                      <i className="bi bi-check-circle-fill me-2"></i>
+                      <div>
+                        <strong>Reservasi berhasil!</strong> Data telah disimpan ke database. 
+                        Tim kami akan menghubungi Anda segera untuk konfirmasi.
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Error Message from API */}
+                  {submitStatus === 'error' && (
+                    <div className="alert alert-danger d-flex align-items-center mt-3" role="alert">
+                      <i className="bi bi-exclamation-triangle-fill me-2"></i>
+                      <div>
+                        <strong>Gagal menyimpan reservasi!</strong> 
+                        Silakan coba lagi atau hubungi tim support kami.
+                      </div>
+                    </div>
+                  )}
+
                   <div className="d-grid mt-4">
-                    <button type="submit" className="btn btn-primary btn-lg fw-bold">
-                      <i className="bi bi-check2-circle me-2"></i>Lanjutkan Pemesanan
+                    <button 
+                      type="submit" 
+                      className="btn btn-primary btn-lg fw-bold"
+                      disabled={isLoading}
+                    >
+                      {isLoading ? (
+                        <>
+                          <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                          Menyimpan...
+                        </>
+                      ) : (
+                        <>
+                          <i className="bi bi-check2-circle me-2"></i>Lanjutkan Pemesanan
+                        </>
+                      )}
                     </button>
                   </div>
                 </form>
